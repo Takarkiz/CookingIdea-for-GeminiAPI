@@ -39,6 +39,11 @@ class MainViewModel: ViewModel() {
     }
 
     suspend fun execute(image: Bitmap) {
+
+        _uiStateFlow.update {
+            it.copy(isLoading = true)
+        }
+
         val chat = model.startChat()
         val response = chat.sendMessage(
             content {
@@ -53,7 +58,10 @@ class MainViewModel: ViewModel() {
         println(response.candidates.first().content.parts.first().asTextOrNull())
 
         _uiStateFlow.update {
-            it.copy(generatedText = response.text)
+            it.copy(
+                generatedText = response.text,
+                isLoading = false,
+                )
         }
     }
 
