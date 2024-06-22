@@ -4,7 +4,6 @@ import android.graphics.Bitmap
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.asTextOrNull
 import com.google.ai.client.generativeai.type.content
@@ -12,10 +11,9 @@ import com.google.ai.client.generativeai.type.generationConfig
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 
-class MainViewModel: ViewModel() {
+class MainViewModel : ViewModel() {
 
     private val _uiStateFlow = MutableStateFlow(MainUiState())
     val uiStateFlow: StateFlow<MainUiState> = _uiStateFlow.asStateFlow()
@@ -35,7 +33,7 @@ class MainViewModel: ViewModel() {
     )
 
     fun updateSelectedImageUri(uri: Uri) {
-        _uiStateFlow.update { it.copy(selectedImageUri = uri)}
+        _uiStateFlow.update { it.copy(selectedImageUri = uri) }
     }
 
     suspend fun execute(image: Bitmap) {
@@ -61,11 +59,11 @@ class MainViewModel: ViewModel() {
             it.copy(
                 generatedText = response.text,
                 isLoading = false,
-                )
+            )
         }
     }
 
-    class Factory: ViewModelProvider.Factory {
+    class Factory : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return MainViewModel() as T
