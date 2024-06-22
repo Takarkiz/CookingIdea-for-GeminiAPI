@@ -1,9 +1,10 @@
-package com.example.cookingidea
+package com.example.cookingidea.ui.screen.main
 
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.cookingidea.BuildConfig
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.asTextOrNull
 import com.google.ai.client.generativeai.type.content
@@ -57,7 +58,6 @@ class MainViewModel : ViewModel() {
 
         _uiStateFlow.update {
             it.copy(
-                generatedText = response.text,
                 isLoading = false,
             )
         }

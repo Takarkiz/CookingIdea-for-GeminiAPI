@@ -1,4 +1,4 @@
-package com.example.cookingidea
+package com.example.cookingidea.ui.screen.main
 
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
