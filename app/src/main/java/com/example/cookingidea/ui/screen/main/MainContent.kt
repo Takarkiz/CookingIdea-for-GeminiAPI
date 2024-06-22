@@ -34,12 +34,6 @@ fun MainContent(
             .padding(32.dp),
     ) {
 
-        if (uiState.isLoading) {
-            CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.Center),
-            )
-        }
-
         Column(
             modifier = modifier
                 .fillMaxSize()
@@ -74,6 +68,12 @@ fun MainContent(
             ) {
                 Text(text = "献立を生成する")
             }
+        }
+
+        if (uiState.isLoading) {
+            CircularProgressIndicator(
+                modifier = Modifier.align(Alignment.Center),
+            )
         }
     }
 }

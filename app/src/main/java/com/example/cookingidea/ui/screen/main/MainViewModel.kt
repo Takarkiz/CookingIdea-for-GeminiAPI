@@ -5,8 +5,8 @@ import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookingidea.BuildConfig
+import com.example.cookingidea.ui.screen.menudialog.MenuDialogUiState
 import com.google.ai.client.generativeai.GenerativeModel
-import com.google.ai.client.generativeai.type.asTextOrNull
 import com.google.ai.client.generativeai.type.content
 import com.google.ai.client.generativeai.type.generationConfig
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,10 +14,20 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
+// TODO: ViewModelの状態クラスを利用したい
+private data class MainViewModelState(
+    val selectedImageUri: Uri? = null,
+    val isLoading: Boolean = false,
+    val generatedText: String = "",
+)
+
 class MainViewModel : ViewModel() {
 
     private val _uiStateFlow = MutableStateFlow(MainUiState())
     val uiStateFlow: StateFlow<MainUiState> = _uiStateFlow.asStateFlow()
+
+    private val _menuDialogUiStateFlow = MutableStateFlow(MenuDialogUiState())
+    val menuDialogUiStateFlow: StateFlow<MenuDialogUiState> = _menuDialogUiStateFlow.asStateFlow()
 
     private val model = GenerativeModel(
         "gemini-1.5-flash",
@@ -37,6 +47,10 @@ class MainViewModel : ViewModel() {
         _uiStateFlow.update { it.copy(selectedImageUri = uri) }
     }
 
+    fun dismissDialog() {
+        _uiStateFlow.update { it.copy(showDialog = false) }
+    }
+
     suspend fun execute(image: Bitmap) {
 
         _uiStateFlow.update {
@@ -51,14 +65,16 @@ class MainViewModel : ViewModel() {
             }
         )
 
-        // Get the first text part of the first candidate
-        println(response.text)
-        // Alternatively
-        println(response.candidates.first().content.parts.first().asTextOrNull())
-
         _uiStateFlow.update {
             it.copy(
                 isLoading = false,
+                showDialog = true,
+            )
+        }
+
+        _menuDialogUiStateFlow.update {
+            it.copy(
+                generatedText = response.text ?: ""
             )
         }
     }

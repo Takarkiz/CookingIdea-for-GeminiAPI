@@ -31,15 +31,20 @@ class MainActivity : ComponentActivity() {
         setContent {
 
             val uiState by viewModel.uiStateFlow.collectAsState()
+            val dialogUiState by viewModel.menuDialogUiStateFlow.collectAsState()
 
             CookingIdeaTheme {
                 MainScreen(
                     uiState = uiState,
+                    dialogUiState = dialogUiState,
                     onClickSelectImage = {
                         photoPickerLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
                     },
                     onClickGenerator = {
                         loadImage(uiState.selectedImageUri!!)
+                    },
+                    onDismissDialogRequest = {
+                        viewModel.dismissDialog()
                     }
                 )
             }
