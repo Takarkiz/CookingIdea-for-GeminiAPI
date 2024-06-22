@@ -2,7 +2,6 @@ package com.example.cookingidea.ui.screen.menudialog
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -32,19 +31,14 @@ fun MenuDialogContent(
             style = MaterialTheme.typography.headlineMedium,
         )
 
-        Box(
+        Text(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
                 .background(color = MaterialTheme.colorScheme.surfaceVariant)
+                .verticalScroll(rememberScrollState()),
+            text = uiState.generatedText,
+            style = MaterialTheme.typography.bodyMedium,
         )
-        {
-            Text(
-                modifier = Modifier
-                    .verticalScroll(rememberScrollState()),
-                text = uiState.generatedText ?: "",
-                style = MaterialTheme.typography.bodyMedium,
-            )
-        }
     }
 }

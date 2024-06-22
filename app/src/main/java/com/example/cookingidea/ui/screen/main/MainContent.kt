@@ -47,7 +47,7 @@ fun MainContent(
                     .fillMaxWidth()
                     .height(280.dp)
                     .background(color = MaterialTheme.colorScheme.surfaceVariant),
-                contentScale = ContentScale.FillHeight
+                contentScale = ContentScale.Fit
             )
 
             Button(
