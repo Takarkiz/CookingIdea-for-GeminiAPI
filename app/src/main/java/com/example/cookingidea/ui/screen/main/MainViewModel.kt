@@ -31,7 +31,7 @@ class MainViewModel : ViewModel() {
     private val model = GeminiModelHelper.Build()
         .setModel(GeminiModelHelper.ModelType.FLASH)
         .setApiKey(BuildConfig.gemini_api_key)
-        .setResponseType(GeminiModelHelper.ResponseType.JSON)
+        .setResponseType(GeminiModelHelper.ResponseType.TEXT)
         .build()
 
     fun updateSelectedImageUri(uri: Uri) {
