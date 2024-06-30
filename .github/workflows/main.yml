@@ -25,7 +25,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
       - name: Setup local.properties
-        run: echo gemini_api_key=${{ secrets.GEMINI_API_KEY }} >> ./local.properties
+        run: echo gemini_api_key="${{ secrets.GEMINI_API_KEY }}" >> ./local.properties
       - name: Build With Gradle
         run: ./gradlew assembleDebug
       - name: UnitTest
