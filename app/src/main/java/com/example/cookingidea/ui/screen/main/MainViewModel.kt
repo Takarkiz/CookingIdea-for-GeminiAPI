@@ -31,7 +31,7 @@ class MainViewModel : ViewModel() {
 
     private val model = GenerativeModel(
         "gemini-1.5-flash",
-        BuildConfig.GEMINI_API_KEY,
+        BuildConfig.gemini_api_key,
         generationConfig = generationConfig {
             temperature = 1f
             topK = 64
