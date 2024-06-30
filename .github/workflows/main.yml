@@ -28,11 +28,6 @@ jobs:
         env:
           name: development
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: print "$GEMINI_API_KEY"
-      - name: Setup local.properties
-        env:
-          name: development
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: echo GEMINI_API_KEY="$GEMINI_API_KEY" > ./local.properties
       - name: Build With Gradle
         run: ./gradlew assembleDebug
