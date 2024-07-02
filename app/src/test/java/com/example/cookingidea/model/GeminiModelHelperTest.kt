@@ -11,7 +11,7 @@ class GeminiModelHelperTest {
 
     @Test
     fun `testBuild throws exception when API key is not set`() {
-        assertThrows<IllegalStateException> {
+        assertThrows<IllegalArgumentException> {
             GeminiModelHelper.Build().build()
         }
     }
