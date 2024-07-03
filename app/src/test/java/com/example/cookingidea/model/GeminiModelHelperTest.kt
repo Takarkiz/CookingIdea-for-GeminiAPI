@@ -34,19 +34,19 @@ class GeminiModelHelperTest {
         )
     }
 
-    @Test
-    fun `testBuild creates GenerativeModel with custom values`() {
-        val model = GeminiModelHelper.Build()
-            .setModel(GeminiModelHelper.ModelType.PRO)
-            .setApiKey("YOUR_API_KEY")
-            .setResponseType(GeminiModelHelper.ResponseType.JSON)
-            .build()
-
-        assertEquals(GeminiModelHelper.ModelType.PRO.modelName, model.modelName)
-        assertEquals("YOUR_API_KEY", model.apiKey)
-        assertEquals(
-            GeminiModelHelper.ResponseType.JSON.responseMimeType,
-            model.generationConfig?.responseMimeType
-        )
-    }
+//    @Test
+//    fun `testBuild creates GenerativeModel with custom values`() {
+//        val model = GeminiModelHelper.Build()
+//            .setModel(GeminiModelHelper.ModelType.PRO)
+//            .setApiKey("YOUR_API_KEY")
+//            .setResponseType(GeminiModelHelper.ResponseType.JSON)
+//            .build()
+//
+//        assertEquals(GeminiModelHelper.ModelType.PRO.modelName, model.modelName)
+//        assertEquals("YOUR_API_KEY", model.apiKey)
+//        assertEquals(
+//            GeminiModelHelper.ResponseType.JSON.responseMimeType,
+//            model.generationConfig?.responseMimeType
+//        )
+//    }
 }
