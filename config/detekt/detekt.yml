@@ -784,6 +784,7 @@ style:
     active: true
     excludeImports:
       - 'java.util.*'
+
 Compose:
   ComposableAnnotationNaming:
     active: true
