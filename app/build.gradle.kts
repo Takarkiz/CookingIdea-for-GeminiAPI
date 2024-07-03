@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
     id("de.mannodermaus.android-junit5") version "1.10.0.0"
+    id("io.gitlab.arturbosch.detekt") version "1.23.6"
 }
 
 android {
@@ -74,4 +75,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    detektPlugins (libs.detekt)
 }
