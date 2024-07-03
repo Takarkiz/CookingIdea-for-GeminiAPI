@@ -38,7 +38,11 @@ class MainActivity : ComponentActivity() {
                     uiState = uiState,
                     dialogUiState = dialogUiState,
                     onClickSelectImage = {
-                        photoPickerLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+                        photoPickerLauncher.launch(
+                            PickVisualMediaRequest(
+                                mediaType = ActivityResultContracts.PickVisualMedia.ImageOnly
+                            )
+                        )
                     },
                     onClickGenerator = {
                         loadImage(uiState.selectedImageUri!!)

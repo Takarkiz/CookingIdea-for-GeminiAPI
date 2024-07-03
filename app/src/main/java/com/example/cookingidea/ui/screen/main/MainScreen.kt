@@ -47,7 +47,6 @@ fun MainScreen(
             }
         }
     )
-
 }
 
 @Preview(showBackground = true)
