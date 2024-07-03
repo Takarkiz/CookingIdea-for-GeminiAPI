@@ -38,8 +38,8 @@ jobs:
   detekt:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@4
-
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: setup JDK
         uses: actions/setup-java@v3
         with:
