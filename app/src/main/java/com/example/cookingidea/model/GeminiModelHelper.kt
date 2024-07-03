@@ -7,8 +7,8 @@ import com.google.ai.client.generativeai.type.generationConfig
 object GeminiModelHelper {
 
     enum class ModelType(val modelName: String) {
-        FLASH("gemini-1.5-flash"),
-        PRO("gemini-1.5-pro"),
+        FLASH("models/gemini-1.5-flash"),
+        PRO("models/gemini-1.5-pro"),
     }
 
     enum class ResponseType(val responseMimeType: String) {
