@@ -16,8 +16,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.example.cookingidea.R
 
 @Composable
 fun MainContent(
@@ -56,7 +58,7 @@ fun MainContent(
                     .height(48.dp),
                 onClick = onClickSelectImage,
             ) {
-                Text(text = "チラシを読み込む")
+                Text(text = stringResource(id = R.string.load_flyer_button_title))
             }
 
             Button(
@@ -66,7 +68,7 @@ fun MainContent(
                 onClick = onClickGenerator,
                 enabled = uiState.selectedImageUri != null,
             ) {
-                Text(text = "献立を生成する")
+                Text(text = stringResource(id = R.string.start_create_menu_button_title))
             }
         }
 
