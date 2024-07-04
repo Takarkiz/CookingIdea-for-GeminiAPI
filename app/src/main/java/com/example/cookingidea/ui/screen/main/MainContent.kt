@@ -35,7 +35,7 @@ fun MainContent(
     ) {
 
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxSize()
                 .align(Alignment.Center),
             verticalArrangement = Arrangement.spacedBy(16.dp),
