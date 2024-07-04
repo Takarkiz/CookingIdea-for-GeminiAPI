@@ -51,13 +51,13 @@ jobs:
       - name: Setup local.properties
         run: echo gemini_api_key="DUMMY_API_KEY" >> ./local.properties
 
-      - name: detekt
-        run: ./gradlew detekt
-
       - name: Setup reviewdog
         uses: reviewdog/action-setup@v1
         with:
           reviewdog_version: latest
+
+      - name: detekt
+        run: ./gradlew detekt
 
       - name: reviewdog report
         if: failure()
