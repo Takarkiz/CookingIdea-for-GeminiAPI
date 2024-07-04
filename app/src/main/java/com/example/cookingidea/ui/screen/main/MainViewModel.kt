@@ -1,10 +1,13 @@
 package com.example.cookingidea.ui.screen.main
 
+import android.app.Application
 import android.graphics.Bitmap
 import android.net.Uri
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookingidea.BuildConfig
+import com.example.cookingidea.R
 import com.example.cookingidea.model.GeminiModelHelper
 import com.example.cookingidea.ui.screen.menudialog.MenuDialogUiState
 import com.google.ai.client.generativeai.type.content
@@ -13,20 +16,15 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-// TODO: ViewModelの状態クラスを利用したい
-private data class MainViewModelState(
-    val selectedImageUri: Uri? = null,
-    val isLoading: Boolean = false,
-    val generatedText: String = "",
-)
-
-class MainViewModel : ViewModel() {
+class MainViewModel(private val application: Application) : AndroidViewModel(application) {
 
     private val _uiStateFlow = MutableStateFlow(MainUiState())
     val uiStateFlow: StateFlow<MainUiState> = _uiStateFlow.asStateFlow()
 
     private val _menuDialogUiStateFlow = MutableStateFlow(MenuDialogUiState())
     val menuDialogUiStateFlow: StateFlow<MenuDialogUiState> = _menuDialogUiStateFlow.asStateFlow()
+
+    private val context get() = application.applicationContext
 
     private val model = GeminiModelHelper.Build()
         .setModel(GeminiModelHelper.ModelType.FLASH)
@@ -52,7 +50,7 @@ class MainViewModel : ViewModel() {
         val response = chat.sendMessage(
             content {
                 image(image)
-                text("添付したチラシに載っている食材を3つ以上利用した、栄養バランスの取れた献立を考えてください\nただし献立は以下の要件を満たしてください\n- 献立のなかで合計3つ以上の食材がこのチラシから参照すること\n- 調味料に関してはチラシの内容を考慮する必要はありません。全ての調味料がすでに揃っている前提で献立を考えてください\n- チラシの中で特に安くなっているものを優先して利用してください")
+                text(context.getString(R.string.core_prompt))
             }
         )
 
@@ -70,10 +68,10 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    class Factory : ViewModelProvider.Factory {
+    class Factory(private val application: Application) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return MainViewModel() as T
+            return MainViewModel(application) as T
         }
     }
 }

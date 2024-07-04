@@ -1,5 +1,6 @@
 package com.example.cookingidea.ui.screen.main
 
+import android.app.Application
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
@@ -18,7 +19,7 @@ import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
-    private val viewModel: MainViewModel by viewModels { MainViewModel.Factory() }
+    private val viewModel: MainViewModel by viewModels { MainViewModel.Factory(Application()) }
 
     private val photoPickerLauncher =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->

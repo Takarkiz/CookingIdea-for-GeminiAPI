@@ -21,8 +21,8 @@ import coil.compose.AsyncImage
 
 @Composable
 fun MainContent(
-    modifier: Modifier = Modifier,
     uiState: MainUiState,
+    modifier: Modifier = Modifier,
     onClickSelectImage: () -> Unit = {},
     onClickGenerator: () -> Unit = {},
 ) {

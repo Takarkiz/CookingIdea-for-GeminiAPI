@@ -51,7 +51,7 @@ fun MainScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun MainScreenPreview() {
+private fun MainScreenPreview() {
     MainScreen(
         uiState = MainUiState(),
         dialogUiState = MenuDialogUiState(),
