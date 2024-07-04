@@ -51,6 +51,11 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    lint {
+        xmlReport = true
+        xmlOutput = File(project.buildDir, "/reports/detekt/detekt.xml")
+    }
 }
 
 dependencies {
