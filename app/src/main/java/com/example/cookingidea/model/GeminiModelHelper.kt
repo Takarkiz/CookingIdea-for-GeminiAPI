@@ -40,18 +40,25 @@ object GeminiModelHelper {
         }
 
         fun build(): GenerativeModel {
-            if (apiKey == null) throw IllegalArgumentException("apiKey is required")
+            val safetyApiKey = checkNotNull(apiKey)
             return GenerativeModel(
                 modelName,
-                apiKey!!,
+                safetyApiKey,
                 generationConfig = generationConfig {
-                    temperature = 1f
-                    topK = 64
-                    topP = 0.95f
-                    maxOutputTokens = 8192
+                    temperature = TEMPERATURE_VALUE
+                    topK = TOP_K_VALUE
+                    topP = TOP_P_VALUE
+                    maxOutputTokens = MAX_OUTPUT_TOKENS
                     responseMimeType = responseType.responseMimeType
                 }
             )
         }
     }
+
+    // 生成パラメータ
+    private const val TEMPERATURE_VALUE = 1f
+    private const val TOP_K_VALUE = 64
+    private const val TOP_P_VALUE = 0.95f
+    private const val MAX_OUTPUT_TOKENS = 8192
+
 }

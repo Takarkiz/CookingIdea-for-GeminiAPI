@@ -21,8 +21,8 @@ import coil.compose.AsyncImage
 
 @Composable
 fun MainContent(
-    modifier: Modifier = Modifier,
     uiState: MainUiState,
+    modifier: Modifier = Modifier,
     onClickSelectImage: () -> Unit = {},
     onClickGenerator: () -> Unit = {},
 ) {
@@ -35,7 +35,7 @@ fun MainContent(
     ) {
 
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxSize()
                 .align(Alignment.Center),
             verticalArrangement = Arrangement.spacedBy(16.dp),

@@ -1,15 +1,17 @@
 name: Build Workflow
 
 on:
-  push:
-    branches:
-      - master
   pull_request:
     types: [ opened, synchronize ]
 
 permissions:
   contents: write
   actions: read
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -31,3 +33,36 @@ jobs:
         run: ./gradlew assembleDebug
       - name: UnitTest
         run: ./gradlew testDebugUnitTest
+  detekt:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: setup JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: adopt
+          java-version: 17
+          cache: gradle
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Setup local.properties
+        run: echo gemini_api_key="DUMMY_API_KEY" >> ./local.properties
+
+      - name: Setup reviewdog
+        uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+
+      - name: detekt
+        run: ./gradlew detekt
+
+      - name: reviewdog report
+        if: failure()
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: cat ./*/build/reports/detekt/detekt.xml |
+          reviewdog -f=checkstyle -name="detekt" -reporter="github-pr-review"
