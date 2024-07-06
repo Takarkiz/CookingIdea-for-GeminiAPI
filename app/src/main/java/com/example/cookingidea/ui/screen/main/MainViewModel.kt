@@ -50,7 +50,7 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
         val response = chat.sendMessage(
             content {
                 image(image)
-                text(context.getString(R.string.core_prompt))
+                text(context.getString(R.string.main_prompt))
             }
         )
 
