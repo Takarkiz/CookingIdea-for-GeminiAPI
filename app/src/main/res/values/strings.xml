@@ -1,7 +1,14 @@
 <resources>
     <string name="app_name">パパっと献立アシスタント</string>
 
-    <string name="core_prompt">添付したチラシに載っている食材を3つ以上利用した、栄養バランスの取れた献立を考えてください\nただし献立は以下の要件を満たしてください\n- 献立のなかで合計3つ以上の食材がこのチラシから参照すること\n- 調味料に関してはチラシの内容を考慮する必要はありません。全ての調味料がすでに揃っている前提で献立を考えてください\n- チラシの中で特に安くなっているものを優先して利用してください</string>
+    <string name="menu_param_edit_screen_title">献立条件の編集</string>
+
+    <string name="main_prompt">次の条件を満たす栄養バランスの取れた献立を考えて下さい。\n</string>
+    <string name="prompt_condition_use_flyer">- 添付したチラシに載っている食材を利用すること。但し調味料に関してはチラシの内容を考慮する必要はない。チラシの中で安くなっているものは優先して利用すること。\n</string>
+    <string name="prompt_condition_use_ingredient_in_flyer">- 添付したチラシに載っている食材で必ず以下にあげる食材を利用すること。\n</string>
+    <string name="prompt_condition_bullet_point">  - %s\n</string>
+    <string name="prompt_condition_use_ingredient">- 添付したチラシ以外で以下の食材を利用すること</string>
+    <string name="prompt_condition_use_menu_theme">- 献立のテーマとして、このテーマに則った献立にして下さい『%s』\n</string>
 
     <string name="load_flyer_button_title">チラシを読み込む</string>
     
