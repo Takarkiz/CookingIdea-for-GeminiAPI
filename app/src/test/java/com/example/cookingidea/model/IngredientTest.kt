@@ -3,6 +3,9 @@ package com.example.cookingidea.model
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
+/**
+ * @see Ingredient
+ */
 class IngredientTest {
 
     @Test
@@ -21,8 +24,8 @@ class IngredientTest {
         val ingredient2 = Ingredient.of("トマト")
 
         Assertions.assertNotEquals(
-            ingredient1,
-            ingredient2,
+            ingredient1.id,
+            ingredient2.id,
             "複数の食材のIDが同一にならないことを確認"
         )
     }
