@@ -66,7 +66,7 @@ fun EditConditionFlyer(
     showBackground = true
 )
 @Composable
-fun PreviewEditConditionFlyer_empty() {
+private fun PreviewEditConditionFlyer_empty() {
     CookingIdeaTheme {
         EditConditionFlyer(
             selectedImageUrl = null
@@ -78,7 +78,7 @@ fun PreviewEditConditionFlyer_empty() {
     showBackground = true
 )
 @Composable
-fun PreviewEditConditionFlyer_image() {
+private fun PreviewEditConditionFlyer_image() {
     CookingIdeaTheme {
         EditConditionFlyer(
             selectedImageUrl = ""

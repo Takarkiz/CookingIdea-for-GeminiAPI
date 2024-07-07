@@ -57,7 +57,7 @@ fun FlyerImage(
 
 @Preview
 @Composable
-fun PreviewFlyerImage() {
+private fun PreviewFlyerImage() {
     CookingIdeaTheme {
         FlyerImage(
             selectedImageUrl = "",
