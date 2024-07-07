@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.cookingidea.R
 import com.example.cookingidea.ui.screen.menudialog.MenuDialogContent
 import com.example.cookingidea.ui.screen.menudialog.MenuDialogUiState
+import com.example.cookingidea.ui.theme.CookingIdeaTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -63,8 +64,10 @@ fun MainScreen(
 @Preview(showBackground = true)
 @Composable
 private fun MainScreenPreview() {
-    MainScreen(
-        uiState = MainUiState(),
-        dialogUiState = MenuDialogUiState(),
-    )
+    CookingIdeaTheme {
+        MainScreen(
+            uiState = MainUiState(),
+            dialogUiState = MenuDialogUiState(),
+        )
+    }
 }

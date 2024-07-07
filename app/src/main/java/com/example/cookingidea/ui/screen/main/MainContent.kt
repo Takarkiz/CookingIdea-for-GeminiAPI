@@ -79,3 +79,11 @@ fun MainContent(
         }
     }
 }
+
+@Preview
+@Composable
+private fun PreviewMainContent() {
+    CookingIdeaTheme {
+        MainContent(uiState = MainUiState())
+    }
+}
