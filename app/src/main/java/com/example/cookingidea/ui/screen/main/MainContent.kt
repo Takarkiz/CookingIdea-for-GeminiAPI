@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.cookingidea.R
+import com.example.cookingidea.ui.screen.main.compose.EditConditionFlyer
 import com.example.cookingidea.ui.theme.CookingIdeaTheme
 
 @Composable
@@ -46,29 +47,9 @@ fun MainContent(
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
 
-            Text(
-                text = "チラシを参照する",
-                style = MaterialTheme.typography.titleSmall
+            EditConditionFlyer(
+                selectedImageUrl = uiState.selectedImageUri?.toString()
             )
-
-            AsyncImage(
-                model = uiState.selectedImageUri,
-                contentDescription = "selected_image",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(280.dp)
-                    .background(color = MaterialTheme.colorScheme.surfaceVariant),
-                contentScale = ContentScale.Fit
-            )
-
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(48.dp),
-                onClick = onClickSelectImage,
-            ) {
-                Text(text = stringResource(id = R.string.load_flyer_button_title))
-            }
 
             Button(
                 modifier = Modifier
