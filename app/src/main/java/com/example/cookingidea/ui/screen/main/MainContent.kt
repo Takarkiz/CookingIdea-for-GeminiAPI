@@ -17,9 +17,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.cookingidea.R
+import com.example.cookingidea.ui.theme.CookingIdeaTheme
 
 @Composable
 fun MainContent(
@@ -33,7 +36,7 @@ fun MainContent(
         modifier = modifier
             .fillMaxSize()
             .background(color = MaterialTheme.colorScheme.background)
-            .padding(32.dp),
+            .padding(16.dp),
     ) {
 
         Column(
@@ -42,6 +45,12 @@ fun MainContent(
                 .align(Alignment.Center),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
+
+            Text(
+                text = "チラシを参照する",
+                style = MaterialTheme.typography.titleSmall
+            )
+
             AsyncImage(
                 model = uiState.selectedImageUri,
                 contentDescription = "selected_image",
@@ -77,5 +86,13 @@ fun MainContent(
                 modifier = Modifier.align(Alignment.Center),
             )
         }
+    }
+}
+
+@Preview
+@Composable
+private fun PreviewMainContent() {
+    CookingIdeaTheme {
+        MainContent(uiState = MainUiState())
     }
 }
