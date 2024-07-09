@@ -45,6 +45,12 @@ class MainActivity : ComponentActivity() {
                             )
                         )
                     },
+                    onClickFlyerImage = {
+                        // 画像のプレビューに遷移する
+                    },
+                    onClickRemoveImage = {
+                        viewModel.removeSelectedImage()
+                    },
                     onClickGenerator = {
                         loadImage(uiState.selectedImageUri!!)
                     },
@@ -63,16 +69,16 @@ class MainActivity : ComponentActivity() {
         val request = ImageRequest.Builder(this)
             .data(uri)
             .target(
-                onStart = { placeholder ->
-                    // Handle the placeholder drawable.
+                onStart = { _ ->
+                    // NOP
                 },
                 onSuccess = { result ->
                     lifecycleScope.launch {
                         viewModel.execute((result as BitmapDrawable).bitmap)
                     }
                 },
-                onError = { error ->
-                    // Handle the error drawable.
+                onError = { _ ->
+                    // NOP
                 }
             )
             .build()

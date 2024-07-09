@@ -15,12 +15,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import com.example.cookingidea.R
 import com.example.cookingidea.ui.screen.main.compose.EditConditionFlyer
 import com.example.cookingidea.ui.theme.CookingIdeaTheme
@@ -28,9 +25,11 @@ import com.example.cookingidea.ui.theme.CookingIdeaTheme
 @Composable
 fun MainContent(
     uiState: MainUiState,
+    onClickSelectImageButton: () -> Unit,
+    onClickImage: () -> Unit,
+    onClickRemoveImageButton: () -> Unit,
+    onClickGenerator: () -> Unit,
     modifier: Modifier = Modifier,
-    onClickSelectImage: () -> Unit = {},
-    onClickGenerator: () -> Unit = {},
 ) {
 
     Box(
@@ -48,7 +47,10 @@ fun MainContent(
         ) {
 
             EditConditionFlyer(
-                selectedImageUrl = uiState.selectedImageUri?.toString()
+                selectedImageUrl = uiState.selectedImageUri?.toString(),
+                onClickSelectFlyerButton = onClickSelectImageButton,
+                onClickFlyerImage = onClickImage,
+                onClickRemoveFlyerButton = onClickRemoveImageButton,
             )
 
             Button(
@@ -74,6 +76,12 @@ fun MainContent(
 @Composable
 private fun PreviewMainContent() {
     CookingIdeaTheme {
-        MainContent(uiState = MainUiState())
+        MainContent(
+            uiState = MainUiState(),
+            onClickSelectImageButton = {},
+            onClickImage = {},
+            onClickRemoveImageButton = {},
+            onClickGenerator = {},
+        )
     }
 }

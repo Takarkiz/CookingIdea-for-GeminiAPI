@@ -23,9 +23,11 @@ import com.example.cookingidea.ui.theme.CookingIdeaTheme
 fun MainScreen(
     uiState: MainUiState,
     dialogUiState: MenuDialogUiState,
-    onClickSelectImage: () -> Unit = {},
-    onClickGenerator: () -> Unit = {},
-    onDismissDialogRequest: () -> Unit = {},
+    onClickSelectImage: () -> Unit,
+    onClickFlyerImage: () -> Unit,
+    onClickRemoveImage: () -> Unit,
+    onClickGenerator: () -> Unit,
+    onDismissDialogRequest: () -> Unit,
 ) {
 
     Scaffold(
@@ -46,7 +48,9 @@ fun MainScreen(
             MainContent(
                 modifier = Modifier.padding(it),
                 uiState = uiState,
-                onClickSelectImage = onClickSelectImage,
+                onClickSelectImageButton = onClickSelectImage,
+                onClickImage = onClickFlyerImage,
+                onClickRemoveImageButton = onClickRemoveImage,
                 onClickGenerator = onClickGenerator,
             )
 
@@ -68,6 +72,11 @@ private fun MainScreenPreview() {
         MainScreen(
             uiState = MainUiState(),
             dialogUiState = MenuDialogUiState(),
+            onClickSelectImage = {},
+            onClickFlyerImage = {},
+            onClickRemoveImage = {},
+            onClickGenerator = {},
+            onDismissDialogRequest = {},
         )
     }
 }

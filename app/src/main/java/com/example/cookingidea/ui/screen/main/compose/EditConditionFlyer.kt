@@ -19,10 +19,10 @@ import com.example.cookingidea.ui.theme.CookingIdeaTheme
 @Composable
 fun EditConditionFlyer(
     selectedImageUrl: String?,
+    onClickSelectFlyerButton: () -> Unit,
+    onClickFlyerImage: () -> Unit,
+    onClickRemoveFlyerButton: () -> Unit,
     modifier: Modifier = Modifier,
-    onClickSelectFlyer: () -> Unit = {},
-    onClickFlyerImage: () -> Unit = {},
-    onClickRemoveFlyerButton: () -> Unit = {},
 ) {
 
     Column(
@@ -50,7 +50,7 @@ fun EditConditionFlyer(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp),
-            onClick = onClickSelectFlyer,
+            onClick = onClickSelectFlyerButton,
         ) {
             val buttonTitleRes = if (selectedImageUrl != null) {
                 R.string.edit_flyer_image_button_title
@@ -69,7 +69,10 @@ fun EditConditionFlyer(
 private fun PreviewEditConditionFlyer_empty() {
     CookingIdeaTheme {
         EditConditionFlyer(
-            selectedImageUrl = null
+            selectedImageUrl = null,
+            onClickSelectFlyerButton = {},
+            onClickFlyerImage = {},
+            onClickRemoveFlyerButton = {},
         )
     }
 }
@@ -81,7 +84,10 @@ private fun PreviewEditConditionFlyer_empty() {
 private fun PreviewEditConditionFlyer_image() {
     CookingIdeaTheme {
         EditConditionFlyer(
-            selectedImageUrl = ""
+            selectedImageUrl = "",
+            onClickSelectFlyerButton = {},
+            onClickFlyerImage = {},
+            onClickRemoveFlyerButton = {},
         )
     }
 }
