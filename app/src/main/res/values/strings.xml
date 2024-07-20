@@ -10,7 +10,8 @@
     <string name="prompt_condition_use_ingredient">- 添付したチラシ以外で以下の食材を利用すること</string>
     <string name="prompt_condition_use_menu_theme">- 献立のテーマとして、このテーマに則った献立にして下さい『%s』\n</string>
 
-    <string name="load_flyer_button_title">チラシを読み込む</string>
+    <string name="load_flyer_button_title">チラシの写真をアップロードする</string>
+    <string name="edit_flyer_image_button_title">チラシの写真を変更する</string>
     
     <string name="menu_dialog_title">今日の献立</string>
     <string name="start_create_menu_button_title">献立を生成する</string>

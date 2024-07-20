@@ -15,21 +15,21 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import com.example.cookingidea.R
+import com.example.cookingidea.ui.screen.main.compose.EditConditionFlyer
 import com.example.cookingidea.ui.theme.CookingIdeaTheme
 
 @Composable
 fun MainContent(
     uiState: MainUiState,
+    onClickSelectImageButton: () -> Unit,
+    onClickImage: () -> Unit,
+    onClickRemoveImageButton: () -> Unit,
+    onClickGenerator: () -> Unit,
     modifier: Modifier = Modifier,
-    onClickSelectImage: () -> Unit = {},
-    onClickGenerator: () -> Unit = {},
 ) {
 
     Box(
@@ -46,29 +46,12 @@ fun MainContent(
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
 
-            Text(
-                text = "チラシを参照する",
-                style = MaterialTheme.typography.titleSmall
+            EditConditionFlyer(
+                selectedImageUrl = uiState.selectedImageUri?.toString(),
+                onClickSelectFlyerButton = onClickSelectImageButton,
+                onClickFlyerImage = onClickImage,
+                onClickRemoveFlyerButton = onClickRemoveImageButton,
             )
-
-            AsyncImage(
-                model = uiState.selectedImageUri,
-                contentDescription = "selected_image",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(280.dp)
-                    .background(color = MaterialTheme.colorScheme.surfaceVariant),
-                contentScale = ContentScale.Fit
-            )
-
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(48.dp),
-                onClick = onClickSelectImage,
-            ) {
-                Text(text = stringResource(id = R.string.load_flyer_button_title))
-            }
 
             Button(
                 modifier = Modifier
@@ -93,6 +76,12 @@ fun MainContent(
 @Composable
 private fun PreviewMainContent() {
     CookingIdeaTheme {
-        MainContent(uiState = MainUiState())
+        MainContent(
+            uiState = MainUiState(),
+            onClickSelectImageButton = {},
+            onClickImage = {},
+            onClickRemoveImageButton = {},
+            onClickGenerator = {},
+        )
     }
 }
