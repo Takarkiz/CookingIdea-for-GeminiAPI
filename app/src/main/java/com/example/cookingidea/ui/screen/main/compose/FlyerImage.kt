@@ -38,7 +38,7 @@ fun FlyerImage(
                 .background(color = MaterialTheme.colorScheme.surfaceVariant)
                 .clickable(
                     onClick = {
-                        onClickRemoveButton()
+                        onClickImage()
                     },
                     onClickLabel = "open_flyer_preview"
                 ),
