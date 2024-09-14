@@ -40,6 +40,10 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
         _uiStateFlow.update { it.copy(showDialog = false) }
     }
 
+    fun removeSelectedImage() {
+        _uiStateFlow.update { it.copy(selectedImageUri = null) }
+    }
+
     suspend fun execute(image: Bitmap) {
 
         _uiStateFlow.update {
