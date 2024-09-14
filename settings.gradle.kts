@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "CookingIdea"
 include(":app")
- 
+include(":modules:core:Android")
