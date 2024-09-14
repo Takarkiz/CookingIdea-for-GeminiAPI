@@ -36,18 +36,22 @@ fun FlyerImage(
                 .fillMaxWidth()
                 .height(240.dp)
                 .background(color = MaterialTheme.colorScheme.surfaceVariant)
-                .clickable {
-                    onClickImage()
-                },
-            contentScale = ContentScale.Fit
+                .clickable(
+                    onClick = {
+                        onClickRemoveButton()
+                    },
+                    onClickLabel = "open_flyer_preview"
+                ),
+            contentScale = ContentScale.Fit,
         )
 
         IconButton(
             modifier = Modifier
                 .align(Alignment.TopEnd),
-            onClick = { onClickRemoveButton() }
+            onClick = { onClickRemoveButton() },
         ) {
             Icon(
+                modifier = Modifier,
                 imageVector = Icons.Default.Close,
                 contentDescription = "remove_flyer_image",
             )

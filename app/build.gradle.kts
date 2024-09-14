@@ -69,6 +69,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.material.icon)
     implementation(libs.coil.compose)
     implementation(libs.generative.ai)
     testImplementation(libs.junit)
