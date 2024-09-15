@@ -1,10 +1,7 @@
-package com.khaki.Android
+package com.khaki.cookingidea.core.android
 
 import android.content.Context
 
-/**
- * Contextが動的に必要な場合に利用する
- */
 interface ContextSupplier {
     fun getContext(): Context
 }

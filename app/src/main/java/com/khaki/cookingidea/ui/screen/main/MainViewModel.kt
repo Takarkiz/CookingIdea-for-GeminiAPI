@@ -1,14 +1,13 @@
 package com.khaki.cookingidea.ui.screen.main
 
-import android.app.Application
 import android.graphics.Bitmap
 import android.net.Uri
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.ai.client.generativeai.type.content
 import com.khaki.cookingidea.BuildConfig
 import com.khaki.cookingidea.R
+import com.khaki.cookingidea.core.android.ContextSupplier
 import com.khaki.cookingidea.model.GeminiModelHelper
 import com.khaki.cookingidea.ui.screen.menudialog.MenuDialogUiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +15,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class MainViewModel() : ViewModel() {
+class MainViewModel(
+    private val contextSupplier: ContextSupplier
+) : ViewModel() {
 
     private val _uiStateFlow = MutableStateFlow(MainUiState())
     val uiStateFlow: StateFlow<MainUiState> = _uiStateFlow.asStateFlow()
@@ -52,7 +53,7 @@ class MainViewModel() : ViewModel() {
         val response = chat.sendMessage(
             content {
                 image(image)
-                text(context.getString(R.string.main_prompt))
+                text(contextSupplier.getContext().getString(R.string.main_prompt))
             }
         )
 
@@ -70,10 +71,10 @@ class MainViewModel() : ViewModel() {
         }
     }
 
-    class Factory(private val application: Application) : ViewModelProvider.Factory {
+    class Factory(private val contextSupplier: ContextSupplier) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return MainViewModel(application) as T
+            return MainViewModel(contextSupplier) as T
         }
     }
 }

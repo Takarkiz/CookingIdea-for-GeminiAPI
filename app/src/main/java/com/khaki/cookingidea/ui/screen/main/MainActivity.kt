@@ -1,6 +1,6 @@
 package com.khaki.cookingidea.ui.screen.main
 
-import android.app.Application
+import android.content.Context
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
@@ -14,12 +14,19 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.lifecycleScope
 import coil.ImageLoader
 import coil.request.ImageRequest
+import com.khaki.cookingidea.core.android.ContextSupplier
 import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
-    private val viewModel: MainViewModel by viewModels { MainViewModel.Factory(Application()) }
+    private val viewModel: MainViewModel by viewModels {
+        MainViewModel.Factory(contextSupplier = object : ContextSupplier {
+            override fun getContext(): Context {
+                return this@MainActivity
+            }
+        })
+    }
 
     private val photoPickerLauncher =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
