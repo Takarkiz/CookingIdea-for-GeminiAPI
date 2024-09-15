@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.cookingidea"
+    namespace = "com.khaki.cookingidea"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.cookingidea"
+        applicationId = "com.khaki.cookingidea"
         minSdk = 29
         targetSdk = 34
         versionCode = 1
