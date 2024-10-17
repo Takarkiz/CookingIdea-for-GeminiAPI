@@ -2,9 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
-    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
-    id("de.mannodermaus.android-junit5") version "1.10.0.0"
-    id("io.gitlab.arturbosch.detekt") version "1.23.6"
+    alias(libs.plugins.secrets.gradle.plugin)
+    alias(libs.plugins.junit5)
+    alias(libs.plugins.detekt)
 }
 
 android {
