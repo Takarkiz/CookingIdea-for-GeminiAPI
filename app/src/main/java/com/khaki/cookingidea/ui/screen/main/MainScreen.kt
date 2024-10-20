@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.khaki.cookingidea.R
+import com.khaki.cookingidea.model.Ingredient
 import com.khaki.cookingidea.ui.screen.menudialog.MenuDialogContent
 import com.khaki.cookingidea.ui.screen.menudialog.MenuDialogUiState
 import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
@@ -27,6 +28,9 @@ fun MainScreen(
     onClickFlyerImage: () -> Unit,
     onClickRemoveImage: () -> Unit,
     onClickGenerator: () -> Unit,
+    onClickIngredient: (Ingredient.ID) -> Unit,
+    onClickAddIngredient: () -> Unit,
+    onClickAddIngredientFromFlyer: () -> Unit,
     onDismissDialogRequest: () -> Unit,
 ) {
 
@@ -52,6 +56,9 @@ fun MainScreen(
                 onClickImage = onClickFlyerImage,
                 onClickRemoveImageButton = onClickRemoveImage,
                 onClickGenerator = onClickGenerator,
+                onClickIngredient = onClickIngredient,
+                onClickAddIngredient = onClickAddIngredient,
+                onClickAddIngredientFromFlyer = onClickAddIngredientFromFlyer,
             )
 
             if (uiState.showDialog) {
@@ -77,6 +84,9 @@ private fun MainScreenPreview() {
             onClickRemoveImage = {},
             onClickGenerator = {},
             onDismissDialogRequest = {},
+            onClickIngredient = {},
+            onClickAddIngredient = {},
+            onClickAddIngredientFromFlyer = {},
         )
     }
 }

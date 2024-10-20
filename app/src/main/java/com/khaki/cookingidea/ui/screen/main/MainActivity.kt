@@ -61,6 +61,11 @@ class MainActivity : ComponentActivity() {
                     onClickGenerator = {
                         loadImage(uiState.selectedImageUri!!)
                     },
+                    onClickIngredient = {
+                        // ダイアログを表示する
+                    },
+                    onClickAddIngredient = {},
+                    onClickAddIngredientFromFlyer = {},
                     onDismissDialogRequest = {
                         viewModel.dismissDialog()
                     }
