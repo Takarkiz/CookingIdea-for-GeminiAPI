@@ -9,18 +9,31 @@ import com.khaki.cookingidea.BuildConfig
 import com.khaki.cookingidea.R
 import com.khaki.cookingidea.core.android.ContextSupplier
 import com.khaki.cookingidea.model.GeminiModelHelper
+import com.khaki.cookingidea.model.Ingredient
 import com.khaki.cookingidea.ui.screen.menudialog.MenuDialogUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class MainViewModel(
+private data class ConditionEditViewModelState(
+    val isLoading: Boolean,
+    val selectedImageUri: Uri? = null,
+    val ingredientList: List<Ingredient> = listOf(),
+) {
+    fun toUiState() : ConditionEditUiState {
+        return ConditionEditUiState(
+
+        )
+    }
+}
+
+class ConditionEditContentViewModel(
     private val contextSupplier: ContextSupplier
 ) : ViewModel() {
 
-    private val _uiStateFlow = MutableStateFlow(MainUiState())
-    val uiStateFlow: StateFlow<MainUiState> = _uiStateFlow.asStateFlow()
+    private val _uiStateFlow = MutableStateFlow(ConditionEditUiState())
+    val uiStateFlow: StateFlow<ConditionEditUiState> = _uiStateFlow.asStateFlow()
 
     private val _menuDialogUiStateFlow = MutableStateFlow(MenuDialogUiState())
     val menuDialogUiStateFlow: StateFlow<MenuDialogUiState> = _menuDialogUiStateFlow.asStateFlow()
@@ -74,7 +87,7 @@ class MainViewModel(
     class Factory(private val contextSupplier: ContextSupplier) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return MainViewModel(contextSupplier) as T
+            return ConditionEditContentViewModel(contextSupplier) as T
         }
     }
 }

@@ -19,8 +19,8 @@ import com.khaki.cookingidea.ui.screen.main.compose.IngredientSelectSection
 import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 
 @Composable
-fun MainContent(
-    uiState: MainUiState,
+fun ConditionEditContent(
+    uiState: ConditionEditUiState,
     onClickSelectImageButton: () -> Unit,
     onClickImage: () -> Unit,
     onClickRemoveImageButton: () -> Unit,
@@ -72,10 +72,10 @@ fun MainContent(
 
 @Preview
 @Composable
-private fun PreviewMainContent() {
+private fun ConditionEditContentPreview() {
     CookingIdeaTheme {
-        MainContent(
-            uiState = MainUiState(),
+        ConditionEditContent(
+            uiState = ConditionEditUiState(),
             onClickSelectImageButton = {},
             onClickImage = {},
             onClickRemoveImageButton = {},

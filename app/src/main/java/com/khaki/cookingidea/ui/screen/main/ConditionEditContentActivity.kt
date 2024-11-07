@@ -18,12 +18,12 @@ import com.khaki.cookingidea.core.android.ContextSupplier
 import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 import kotlinx.coroutines.launch
 
-class MainActivity : ComponentActivity() {
+class ConditionEditContentActivity : ComponentActivity() {
 
-    private val viewModel: MainViewModel by viewModels {
-        MainViewModel.Factory(contextSupplier = object : ContextSupplier {
+    private val viewModel: ConditionEditContentViewModel by viewModels {
+        ConditionEditContentViewModel.Factory(contextSupplier = object : ContextSupplier {
             override fun getContext(): Context {
-                return this@MainActivity
+                return this@ConditionEditContentActivity
             }
         })
     }
@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
             val dialogUiState by viewModel.menuDialogUiStateFlow.collectAsState()
 
             CookingIdeaTheme {
-                MainScreen(
+                ConditionEditContentScreen(
                     uiState = uiState,
                     dialogUiState = dialogUiState,
                     onClickSelectImage = {

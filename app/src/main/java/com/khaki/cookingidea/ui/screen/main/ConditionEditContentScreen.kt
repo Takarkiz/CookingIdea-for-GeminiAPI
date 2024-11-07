@@ -3,9 +3,9 @@ package com.khaki.cookingidea.ui.screen.main
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -21,8 +21,8 @@ import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(
-    uiState: MainUiState,
+fun ConditionEditContentScreen(
+    uiState: ConditionEditUiState,
     dialogUiState: MenuDialogUiState,
     onClickSelectImage: () -> Unit,
     onClickFlyerImage: () -> Unit,
@@ -36,7 +36,7 @@ fun MainScreen(
 
     Scaffold(
         topBar = {
-            LargeTopAppBar(
+            CenterAlignedTopAppBar(
                 title = {
                     Text(text = stringResource(id = R.string.menu_param_edit_screen_title))
                 },
@@ -49,7 +49,7 @@ fun MainScreen(
             )
         },
         content = {
-            MainContent(
+            ConditionEditContent(
                 modifier = Modifier.padding(it),
                 uiState = uiState,
                 onClickSelectImageButton = onClickSelectImage,
@@ -74,10 +74,10 @@ fun MainScreen(
 
 @Preview(showBackground = true)
 @Composable
-private fun MainScreenPreview() {
+private fun ConditionEditContentScreenPreview() {
     CookingIdeaTheme {
-        MainScreen(
-            uiState = MainUiState(),
+        ConditionEditContentScreen(
+            uiState = ConditionEditUiState(),
             dialogUiState = MenuDialogUiState(),
             onClickSelectImage = {},
             onClickFlyerImage = {},

@@ -78,7 +78,9 @@ fun IngredientSelectSection(
                     .background(
                         color = MaterialTheme.colorScheme.surface,
                     )
-                    .padding(8.dp),
+                    .padding(
+                        vertical = 8.dp,
+                    ),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
 
