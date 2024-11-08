@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
+// おそらく未だいらなさそう
 private data class ConditionEditViewModelState(
     val isLoading: Boolean,
     val selectedImageUri: Uri? = null,

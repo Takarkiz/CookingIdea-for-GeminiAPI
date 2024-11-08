@@ -62,10 +62,14 @@ class ConditionEditContentActivity : ComponentActivity() {
                         loadImage(uiState.selectedImageUri!!)
                     },
                     onClickIngredient = {
-                        // ダイアログを表示する
+                        // 素材を削除する
                     },
-                    onClickAddIngredient = {},
-                    onClickAddIngredientFromFlyer = {},
+                    onClickAddIngredient = {
+                        // 素材を追加するダイアログを表示する
+                    },
+                    onClickAddIngredientFromFlyer = {
+                        // チラシから食材を追加するボタン
+                    },
                     onDismissDialogRequest = {
                         viewModel.dismissDialog()
                     }

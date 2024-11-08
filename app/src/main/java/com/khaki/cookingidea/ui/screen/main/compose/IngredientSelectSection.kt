@@ -1,6 +1,7 @@
 package com.khaki.cookingidea.ui.screen.main.compose
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -16,6 +17,7 @@ import androidx.compose.material.icons.filled.AddCircleOutline
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.InputChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -99,7 +101,10 @@ fun IngredientSelectSection(
                         trailingIcon = {
                             Icon(
                                 modifier = Modifier
-                                    .size(16.dp),
+                                    .size(16.dp)
+                                    .clickable {
+
+                                    },
                                 imageVector = Icons.Default.Close,
                                 contentDescription = null
                             )
