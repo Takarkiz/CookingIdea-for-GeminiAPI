@@ -14,7 +14,7 @@
         android:theme="@style/Theme.CookingIdea"
         tools:targetApi="31">
         <activity
-            android:name=".ui.screen.main.MainActivity"
+            android:name=".ui.screen.main.ConditionEditContentActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.CookingIdea">

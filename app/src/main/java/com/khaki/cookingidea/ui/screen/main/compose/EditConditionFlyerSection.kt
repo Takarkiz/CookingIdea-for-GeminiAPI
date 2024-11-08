@@ -20,7 +20,7 @@ import com.khaki.cookingidea.R
 import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 
 @Composable
-fun EditConditionFlyer(
+fun EditConditionFlyerSection(
     selectedImageUrl: String?,
     onClickSelectFlyerButton: () -> Unit,
     onClickFlyerImage: () -> Unit,
@@ -34,7 +34,7 @@ fun EditConditionFlyer(
     ) {
         Text(
             text = "チラシを参照する",
-            style = MaterialTheme.typography.titleSmall
+            style = MaterialTheme.typography.titleMedium,
         )
 
         if (selectedImageUrl != null) {
@@ -79,7 +79,7 @@ fun EditConditionFlyer(
 @Composable
 private fun PreviewEditConditionFlyer_empty() {
     CookingIdeaTheme {
-        EditConditionFlyer(
+        EditConditionFlyerSection(
             selectedImageUrl = null,
             onClickSelectFlyerButton = {},
             onClickFlyerImage = {},
@@ -94,7 +94,7 @@ private fun PreviewEditConditionFlyer_empty() {
 @Composable
 private fun PreviewEditConditionFlyer_image() {
     CookingIdeaTheme {
-        EditConditionFlyer(
+        EditConditionFlyerSection(
             selectedImageUrl = "",
             onClickSelectFlyerButton = {},
             onClickFlyerImage = {},

@@ -5,30 +5,29 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.khaki.cookingidea.R
-import com.khaki.cookingidea.ui.screen.main.compose.EditConditionFlyer
+import com.khaki.cookingidea.model.Ingredient
+import com.khaki.cookingidea.ui.screen.main.compose.EditConditionFlyerSection
+import com.khaki.cookingidea.ui.screen.main.compose.IngredientSelectSection
 import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 
 @Composable
-fun MainContent(
-    uiState: MainUiState,
+fun ConditionEditContent(
+    uiState: ConditionEditUiState,
     onClickSelectImageButton: () -> Unit,
     onClickImage: () -> Unit,
     onClickRemoveImageButton: () -> Unit,
     onClickGenerator: () -> Unit,
+    onClickIngredient: (Ingredient.ID) -> Unit,
+    onClickAddIngredient: () -> Unit,
+    onClickAddIngredientFromFlyer: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
 
@@ -43,25 +42,24 @@ fun MainContent(
             modifier = Modifier
                 .fillMaxSize()
                 .align(Alignment.Center),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(24.dp),
         ) {
 
-            EditConditionFlyer(
+            EditConditionFlyerSection(
                 selectedImageUrl = uiState.selectedImageUri?.toString(),
                 onClickSelectFlyerButton = onClickSelectImageButton,
                 onClickFlyerImage = onClickImage,
                 onClickRemoveFlyerButton = onClickRemoveImageButton,
             )
 
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(48.dp),
-                onClick = onClickGenerator,
-                enabled = uiState.selectedImageUri != null,
-            ) {
-                Text(text = stringResource(id = R.string.start_create_menu_button_title))
-            }
+            IngredientSelectSection(
+                ingredientList = uiState.ingredientList,
+                enableFlyer = uiState.selectedImageUri != null,
+                onClickSelectedIngredient = {},
+                onClickAddIngredient = {},
+                onClickAddIngredientFromFlyer = {},
+            )
+
         }
 
         if (uiState.isLoading) {
@@ -74,14 +72,17 @@ fun MainContent(
 
 @Preview
 @Composable
-private fun PreviewMainContent() {
+private fun ConditionEditContentPreview() {
     CookingIdeaTheme {
-        MainContent(
-            uiState = MainUiState(),
+        ConditionEditContent(
+            uiState = ConditionEditUiState(),
             onClickSelectImageButton = {},
             onClickImage = {},
             onClickRemoveImageButton = {},
             onClickGenerator = {},
+            onClickIngredient = {},
+            onClickAddIngredient = {},
+            onClickAddIngredientFromFlyer = {},
         )
     }
 }

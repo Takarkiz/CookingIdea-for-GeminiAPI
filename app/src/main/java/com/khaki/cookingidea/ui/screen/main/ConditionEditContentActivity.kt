@@ -18,12 +18,12 @@ import com.khaki.cookingidea.core.android.ContextSupplier
 import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 import kotlinx.coroutines.launch
 
-class MainActivity : ComponentActivity() {
+class ConditionEditContentActivity : ComponentActivity() {
 
-    private val viewModel: MainViewModel by viewModels {
-        MainViewModel.Factory(contextSupplier = object : ContextSupplier {
+    private val viewModel: ConditionEditContentViewModel by viewModels {
+        ConditionEditContentViewModel.Factory(contextSupplier = object : ContextSupplier {
             override fun getContext(): Context {
-                return this@MainActivity
+                return this@ConditionEditContentActivity
             }
         })
     }
@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
             val dialogUiState by viewModel.menuDialogUiStateFlow.collectAsState()
 
             CookingIdeaTheme {
-                MainScreen(
+                ConditionEditContentScreen(
                     uiState = uiState,
                     dialogUiState = dialogUiState,
                     onClickSelectImage = {
@@ -60,6 +60,15 @@ class MainActivity : ComponentActivity() {
                     },
                     onClickGenerator = {
                         loadImage(uiState.selectedImageUri!!)
+                    },
+                    onClickIngredient = {
+                        // 素材を削除する
+                    },
+                    onClickAddIngredient = {
+                        // 素材を追加するダイアログを表示する
+                    },
+                    onClickAddIngredientFromFlyer = {
+                        // チラシから食材を追加するボタン
                     },
                     onDismissDialogRequest = {
                         viewModel.dismissDialog()
