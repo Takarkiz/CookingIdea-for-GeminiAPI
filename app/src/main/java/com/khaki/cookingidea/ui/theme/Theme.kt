@@ -1,6 +1,8 @@
 package com.khaki.cookingidea.ui.theme
 
 import android.app.Activity
+import android.app.UiModeManager
+import android.content.Context
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -264,9 +266,19 @@ fun CookingIdeaTheme(
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit,
 ) {
+    val context = LocalContext.current
+    val uiModeManager = context.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
     val colorScheme = when {
+        !dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE -> {
+            when (uiModeManager.contrast) {
+                in 0.0f..0.33f -> if (darkTheme) darkScheme else lightScheme
+                in 0.34f..0.66f -> if (darkTheme) mediumContrastDarkColorScheme else mediumContrastLightColorScheme
+                in 0.67f..1.0f -> if (darkTheme) highContrastDarkColorScheme else highContrastLightColorScheme
+                else -> if (darkTheme) darkScheme else lightScheme
+            }
+        }
+
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
 
