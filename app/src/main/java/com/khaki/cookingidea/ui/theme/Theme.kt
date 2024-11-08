@@ -257,9 +257,15 @@ fun CookingIdeaTheme(
     val colorScheme = when {
         !dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE -> {
             when (uiModeManager.contrast) {
-                in 0.0f..NORMAL_CONTRAST_RATE -> if (darkTheme) darkScheme else lightScheme
-                in MEDIUM_CONTRAST_RATE_MIN..MEDIUM_CONTRAST_RATE_MAX -> if (darkTheme) mediumContrastDarkColorScheme else mediumContrastLightColorScheme
-                in HIGH_CONTRAST_RATE_MIN..1.0f -> if (darkTheme) highContrastDarkColorScheme else highContrastLightColorScheme
+                in 0.0f..NORMAL_CONTRAST_RATE -> {
+                    if (darkTheme) darkScheme else lightScheme
+                }
+                in MEDIUM_CONTRAST_RATE_MIN..MEDIUM_CONTRAST_RATE_MAX -> {
+                    if (darkTheme) mediumContrastDarkColorScheme else mediumContrastLightColorScheme
+                }
+                in HIGH_CONTRAST_RATE_MIN..1.0f -> {
+                    if (darkTheme) highContrastDarkColorScheme else highContrastLightColorScheme
+                }
                 else -> if (darkTheme) darkScheme else lightScheme
             }
         }
