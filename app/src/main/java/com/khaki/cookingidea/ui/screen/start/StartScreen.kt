@@ -15,7 +15,7 @@ fun StartScreen(
     Scaffold {
         StartContent(
             modifier = Modifier.padding(it),
-            onClickStart = {}
+            onClickStart = onClickStart,
         )
     }
 }
