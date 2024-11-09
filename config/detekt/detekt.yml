@@ -744,6 +744,8 @@ style:
     allowedNames: ''
     ignoreAnnotated:
       - 'Preview'
+      - 'PreviewScreenSizes'
+      - 'PreviewFontScale'
   UnusedPrivateProperty:
     active: true
     allowedNames: '_|ignored|expected|serialVersionUID'
