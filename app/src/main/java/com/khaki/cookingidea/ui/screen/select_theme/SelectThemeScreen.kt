@@ -16,11 +16,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
+import com.khaki.cookingidea.ui.screen.select_theme.compose.SelectThemeUiState
 import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SelectThemeScreen() {
+fun SelectThemeScreen(
+    uiState: SelectThemeUiState,
+    onUpdateSelectedTheme: (String) -> Unit,
+) {
 
     Scaffold(
         modifier = Modifier
@@ -58,7 +62,11 @@ fun SelectThemeScreen() {
                     color = MaterialTheme.colorScheme.background
                 )
                 .padding(it),
-            selectedThemeTitle = "特になし"
+            choices = uiState.themeChoices,
+            selectedThemeTitle = uiState.selectedTheme,
+            onUpdateTheme = { themeTitle ->
+                onUpdateSelectedTheme(themeTitle)
+            }
         )
     }
 }
@@ -67,6 +75,19 @@ fun SelectThemeScreen() {
 @Composable
 private fun SelectThemeScreenPreview() {
     CookingIdeaTheme {
-        SelectThemeScreen()
+        SelectThemeScreen(
+            uiState = SelectThemeUiState(
+                themeChoices = listOf(
+                    "秋を感じるランチ",
+                    "休日にじっくり作りたいディナー",
+                    "きのこのフルコース",
+                    "サクッと作れる時短レシピ",
+                    "季節を感じられる和食",
+                    "特になし",
+                ),
+                selectedTheme = ThemeRequest.Request("季節を感じられる和食")
+            ),
+            onUpdateSelectedTheme = {},
+        )
     }
 }

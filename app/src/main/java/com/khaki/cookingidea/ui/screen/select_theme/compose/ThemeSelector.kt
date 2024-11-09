@@ -1,12 +1,10 @@
 package com.khaki.cookingidea.ui.screen.select_theme.compose
 
-import android.content.res.Resources.Theme
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,13 +17,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.khaki.cookingidea.ui.screen.select_theme.ThemeRequest
 import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 
 @Composable
 fun ThemeSelector(
     modifier: Modifier = Modifier,
     choices: List<String>,
-    selectedChoice: String,
+    selectedChoice: ThemeRequest,
+    onSelectTheme: (String) -> Unit,
 ) {
 
     Column(
@@ -47,13 +47,26 @@ fun ThemeSelector(
 
             choices.forEach {
 
-                val selectedModifier = if (it == selectedChoice) {
-                    Modifier.background(
-                        color = MaterialTheme.colorScheme.surfaceVariant,
-                        shape = RoundedCornerShape(20.dp)
-                    )
-                } else {
-                    Modifier
+                val selectedModifier = when (selectedChoice) {
+                    is ThemeRequest.None -> {
+                        if (it == "特になし") {
+                            Modifier.background(
+                                color = MaterialTheme.colorScheme.surfaceVariant,
+                                shape = RoundedCornerShape(20.dp)
+                            )
+                        } else Modifier
+                    }
+
+                    is ThemeRequest.Request -> {
+                        if (it == selectedChoice.value) {
+                            Modifier.background(
+                                color = MaterialTheme.colorScheme.surfaceVariant,
+                                shape = RoundedCornerShape(20.dp)
+                            )
+                        } else {
+                            Modifier
+                        }
+                    }
                 }
 
                 Text(
@@ -66,9 +79,10 @@ fun ThemeSelector(
                             interactionSource = MutableInteractionSource(),
                             indication = ripple(),
                             onClick = {
-
+                                onSelectTheme(it)
                             },
-                        ).padding(
+                        )
+                        .padding(
                             vertical = 8.dp,
                             horizontal = 32.dp,
                         ),
@@ -96,7 +110,8 @@ private fun ThemeSelectorPreview() {
                 "季節を感じられる和食",
                 "特になし",
             ),
-            selectedChoice = "季節を感じられる和食"
+            selectedChoice = ThemeRequest.None,
+            onSelectTheme = {},
         )
     }
 }

@@ -1,5 +1,6 @@
 package com.khaki.cookingidea.ui.screen.select_theme
 
+import android.content.res.Resources.Theme
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -9,11 +10,17 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Cancel
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import com.khaki.cookingidea.ui.screen.select_theme.compose.ThemeSelector
@@ -22,7 +29,9 @@ import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 @Composable
 fun SelectThemeContent(
     modifier: Modifier = Modifier,
-    selectedThemeTitle: String,
+    choices: List<String>,
+    selectedThemeTitle: ThemeRequest,
+    onUpdateTheme: (String) -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -48,15 +57,11 @@ fun SelectThemeContent(
 
         ThemeSelector(
             modifier = Modifier.fillMaxWidth(),
-            choices = listOf(
-                "秋を感じるランチ",
-                "休日にじっくり作りたいディナー",
-                "きのこのフルコース",
-                "サクッと作れる時短レシピ",
-                "季節を感じられる和食",
-                "特になし",
-            ),
+            choices = choices,
             selectedChoice = selectedThemeTitle,
+            onSelectTheme = {
+                onUpdateTheme(it)
+            }
         )
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -69,10 +74,38 @@ fun SelectThemeContent(
 
         Spacer(Modifier.height(8.dp))
 
-        Text(
-            text = selectedThemeTitle,
-            style = MaterialTheme.typography.titleLarge,
-            color = MaterialTheme.colorScheme.onBackground,
+        TextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = when (selectedThemeTitle) {
+                is ThemeRequest.None -> "特になし"
+                is ThemeRequest.Request -> selectedThemeTitle.value
+            },
+            textStyle = MaterialTheme.typography.titleLarge,
+            onValueChange = { input ->
+                onUpdateTheme(input.drop(20))
+            },
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = Color.Transparent,
+                unfocusedContainerColor = Color.Transparent,
+                disabledContainerColor = Color.Transparent,
+                errorContainerColor = Color.Transparent
+            ),
+            trailingIcon = {
+                IconButton(
+                    onClick = {
+                        onUpdateTheme("")
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Cancel,
+                        contentDescription = null
+                    )
+                }
+            }
+        )
+
+        Spacer(
+            modifier = Modifier.height(80.dp)
         )
     }
 }
@@ -82,7 +115,16 @@ fun SelectThemeContent(
 private fun SelectThemeContentPreview() {
     CookingIdeaTheme {
         SelectThemeContent(
-            selectedThemeTitle = "秋を感じるランチ"
+            choices = listOf(
+                "秋を感じるランチ",
+                "休日にじっくり作りたいディナー",
+                "きのこのフルコース",
+                "サクッと作れる時短レシピ",
+                "季節を感じられる和食",
+                "特になし",
+            ),
+            selectedThemeTitle = ThemeRequest.Request("秋を感じるランチ"),
+            onUpdateTheme = {},
         )
     }
 }
