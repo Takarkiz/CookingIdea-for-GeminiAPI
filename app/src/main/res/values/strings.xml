@@ -12,7 +12,7 @@
 
     <string name="load_flyer_button_title">チラシの写真をアップロードする</string>
     <string name="edit_flyer_image_button_title">チラシの写真を変更する</string>
-    
+
     <string name="menu_dialog_title">今日の献立</string>
     <string name="start_create_menu_button_title">献立を生成する</string>
 </resources>
