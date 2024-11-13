@@ -10,6 +10,7 @@ import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -24,6 +25,7 @@ import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 fun SelectThemeScreen(
     uiState: SelectThemeUiState,
     onUpdateSelectedTheme: (String) -> Unit,
+    onBack: () -> Unit,
 ) {
 
     Scaffold(
@@ -37,11 +39,15 @@ fun SelectThemeScreen(
                     )
                 },
                 navigationIcon = {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = null,
-                    )
-                }
+                    IconButton(
+                        onClick = onBack,
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = null,
+                        )
+                    }
+                },
             )
         },
         floatingActionButton = {
@@ -88,6 +94,7 @@ private fun SelectThemeScreenPreview() {
                 selectedTheme = ThemeRequest.Request("季節を感じられる和食")
             ),
             onUpdateSelectedTheme = {},
+            onBack = {},
         )
     }
 }

@@ -77,12 +77,22 @@ fun SelectThemeContent(
         TextField(
             modifier = Modifier.fillMaxWidth(),
             value = when (selectedThemeTitle) {
-                is ThemeRequest.None -> "特になし"
+                is ThemeRequest.None -> ""
                 is ThemeRequest.Request -> selectedThemeTitle.value
+            },
+            singleLine = true,
+            placeholder = {
+                if (selectedThemeTitle is ThemeRequest.None) {
+                    Text(
+                        text = "特になし",
+                        style = MaterialTheme.typography.titleLarge,
+                        color = MaterialTheme.colorScheme.outline,
+                    )
+                }
             },
             textStyle = MaterialTheme.typography.titleLarge,
             onValueChange = { input ->
-                onUpdateTheme(input.drop(20))
+                onUpdateTheme(input)
             },
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = Color.Transparent,

@@ -4,18 +4,24 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import com.khaki.cookingidea.ui.screen.select_theme.SelectThemeActivity
+import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 
 class StartActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
         setContent {
-            StartScreen(
-                onClickStart = {
-                    // テーマ選択画面へ遷移する
-                }
-            )
+            CookingIdeaTheme {
+                StartScreen(
+                    onClickStart = {
+                        startActivity(
+                            SelectThemeActivity.newIntent(this)
+                        )
+                    }
+                )
+            }
         }
     }
 }

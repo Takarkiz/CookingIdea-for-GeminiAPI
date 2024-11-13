@@ -1,6 +1,8 @@
 package com.khaki.cookingidea.ui.screen.start
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,7 +16,11 @@ fun StartScreen(
 ) {
     Scaffold {
         StartContent(
-            modifier = Modifier.padding(it),
+            modifier = Modifier
+                .background(
+                    color = MaterialTheme.colorScheme.primary
+                )
+                .padding(it),
             onClickStart = onClickStart,
         )
     }
