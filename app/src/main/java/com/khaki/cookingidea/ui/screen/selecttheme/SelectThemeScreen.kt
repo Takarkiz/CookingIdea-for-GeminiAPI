@@ -1,4 +1,4 @@
-package com.khaki.cookingidea.ui.screen.select_theme
+package com.khaki.cookingidea.ui.screen.selecttheme
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,7 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
-import com.khaki.cookingidea.ui.screen.select_theme.compose.SelectThemeUiState
+import com.khaki.cookingidea.ui.screen.selecttheme.compose.SelectThemeUiState
 import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 
 @OptIn(ExperimentalMaterial3Api::class)

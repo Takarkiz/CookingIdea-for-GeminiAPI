@@ -1,6 +1,5 @@
-package com.khaki.cookingidea.ui.screen.select_theme
+package com.khaki.cookingidea.ui.screen.selecttheme
 
-import android.content.res.Resources.Theme
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -23,15 +22,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
-import com.khaki.cookingidea.ui.screen.select_theme.compose.ThemeSelector
+import com.khaki.cookingidea.ui.screen.selecttheme.compose.ThemeSelector
 import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 
 @Composable
 fun SelectThemeContent(
-    modifier: Modifier = Modifier,
     choices: List<String>,
     selectedThemeTitle: ThemeRequest,
     onUpdateTheme: (String) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier

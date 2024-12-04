@@ -28,7 +28,7 @@
             android:name=".ui.screen.main.MainActivity"
             android:exported="false"/>
         <activity
-            android:name=".ui.screen.select_theme.SelectThemeActivity"
+            android:name=".ui.screen.selecttheme.SelectThemeActivity"
             android:exported="false" />
     </application>
 

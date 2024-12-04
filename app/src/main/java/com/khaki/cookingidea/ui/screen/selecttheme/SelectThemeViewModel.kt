@@ -1,8 +1,8 @@
-package com.khaki.cookingidea.ui.screen.select_theme
+package com.khaki.cookingidea.ui.screen.selecttheme
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.khaki.cookingidea.ui.screen.select_theme.compose.SelectThemeUiState
+import com.khaki.cookingidea.ui.screen.selecttheme.compose.SelectThemeUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -29,12 +29,14 @@ class SelectThemeViewModel : ViewModel() {
     fun updateInputTheme(inputValue: String) {
         _uiStateFlow.update {
             it.copy(
-                selectedTheme = if (inputValue.isBlank()) ThemeRequest.None else ThemeRequest.Request(inputValue)
+                selectedTheme = if (inputValue.isBlank()) ThemeRequest.None else ThemeRequest.Request(
+                    inputValue
+                )
             )
         }
     }
 
-    class Factory: ViewModelProvider.Factory {
+    class Factory : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return SelectThemeViewModel() as T

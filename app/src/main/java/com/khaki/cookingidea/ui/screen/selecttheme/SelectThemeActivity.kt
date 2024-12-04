@@ -1,4 +1,4 @@
-package com.khaki.cookingidea.ui.screen.select_theme
+package com.khaki.cookingidea.ui.screen.selecttheme
 
 import android.content.Context
 import android.content.Intent
@@ -11,7 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 
-class SelectThemeActivity: ComponentActivity() {
+class SelectThemeActivity : ComponentActivity() {
 
     companion object {
         fun newIntent(context: Context): Intent {
