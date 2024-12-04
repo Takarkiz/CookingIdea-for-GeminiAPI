@@ -12,7 +12,7 @@ class SelectThemeViewModel : ViewModel() {
 
     private val _uiStateFlow = MutableStateFlow(
         SelectThemeUiState(
-            // TODO: 仮で初期値として与えます
+            // 仮で初期値として与えます
             themeChoices = listOf(
                 "秋を感じるランチ",
                 "休日にじっくり作りたいディナー",
