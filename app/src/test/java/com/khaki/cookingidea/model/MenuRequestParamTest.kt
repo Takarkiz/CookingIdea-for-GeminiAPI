@@ -11,7 +11,7 @@ class MenuRequestParamTest {
 
     @Test
     fun testBuilder_empty() {
-        val param = MenuRequestParam.Build().build()
+        val param = MenuRequestParam.Builder().build()
 
         assertEquals(
             emptyList<Ingredient>(),
@@ -26,8 +26,8 @@ class MenuRequestParamTest {
         )
 
         assertEquals(
-            false,
-            param.isUseFlyer,
+            null,
+            param.flyerUri,
             "初期値ではチラシを使わない設定になっていることを確認"
         )
 
@@ -43,10 +43,10 @@ class MenuRequestParamTest {
         val ingredient2 = Ingredient.of("レタス")
         val ingredient3 = Ingredient.of("チーズ")
 
-        val param = MenuRequestParam.Build()
+        val param = MenuRequestParam.Builder()
             .setIngredient(ingredient1)
             .setIngredient(ingredient2)
-            .setUseFlyer(true)
+            .setUseFlyer("content:hoge/fuga")
             .setIngredientInFlyer(ingredient3)
             .setRequestMenuTheme("和風")
             .build()
@@ -56,7 +56,7 @@ class MenuRequestParamTest {
             param.requestIngredients,
             "食材が追加したものと一致していることを確認"
         )
-        assertEquals(true, param.isUseFlyer, "チラシを利用することの指定が確認")
+        assertEquals("content:hoge/fuga", param.flyerUri, "チラシを利用することの指定が確認")
         assertEquals(
             listOf(ingredient3),
             param.requestIngredientsInFlyer,
