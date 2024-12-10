@@ -8,7 +8,7 @@ fun MenuRequestParam.toPrompt(context: Context): String {
     var prompt = context.getString(R.string.main_prompt)
 
     // チラシを利用している場合
-    if (isUseFlyer) {
+    if (flyerUri != null) {
         prompt = prompt.plus(context.getString(R.string.prompt_condition_use_flyer))
 
         if (requestIngredientsInFlyer.isNotEmpty()) {

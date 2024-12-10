@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.secrets.gradle.plugin)
     alias(libs.plugins.junit5)
     alias(libs.plugins.detekt)
+    id("kotlin-parcelize")
 }
 
 android {

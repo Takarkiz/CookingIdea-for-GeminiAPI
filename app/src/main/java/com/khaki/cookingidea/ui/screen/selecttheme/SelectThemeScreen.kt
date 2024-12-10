@@ -25,6 +25,7 @@ import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 fun SelectThemeScreen(
     uiState: SelectThemeUiState,
     onUpdateSelectedTheme: (String) -> Unit,
+    onCompleteSelection: () -> Unit,
     onBack: () -> Unit,
 ) {
 
@@ -44,7 +45,7 @@ fun SelectThemeScreen(
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = null,
+                            contentDescription = "Back",
                         )
                     }
                 },
@@ -53,7 +54,7 @@ fun SelectThemeScreen(
         floatingActionButton = {
             Button(
                 onClick = {
-
+                    onCompleteSelection()
                 }
             ) {
                 Text(text = "次に進む")
@@ -94,6 +95,7 @@ private fun SelectThemeScreenPreview() {
                 selectedTheme = ThemeRequest.Request("季節を感じられる和食")
             ),
             onUpdateSelectedTheme = {},
+            onCompleteSelection = {},
             onBack = {},
         )
     }

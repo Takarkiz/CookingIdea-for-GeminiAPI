@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.khaki.cookingidea.ui.screen.flyer.FlyerActivity
 import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 
 class SelectThemeActivity : ComponentActivity() {
@@ -35,6 +36,16 @@ class SelectThemeActivity : ComponentActivity() {
                     uiState = uiState,
                     onUpdateSelectedTheme = {
                         viewModel.updateInputTheme(it)
+                    },
+                    onCompleteSelection = {
+                        val intent = FlyerActivity.newIntent(
+                            this@SelectThemeActivity,
+                            theme = when (val theme = uiState.selectedTheme) {
+                                is ThemeRequest.None -> null
+                                is ThemeRequest.Request -> theme.value
+                            }
+                        )
+                        startActivity(intent)
                     },
                     onBack = {
                         finish()
