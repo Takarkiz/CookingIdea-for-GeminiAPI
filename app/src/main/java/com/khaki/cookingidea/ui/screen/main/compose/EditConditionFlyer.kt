@@ -21,11 +21,11 @@ import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 
 @Composable
 fun EditConditionFlyer(
+    modifier: Modifier = Modifier,
     selectedImageUrl: String?,
     onClickSelectFlyerButton: () -> Unit,
     onClickFlyerImage: () -> Unit,
     onClickRemoveFlyerButton: () -> Unit,
-    modifier: Modifier = Modifier,
 ) {
 
     Column(
@@ -77,7 +77,7 @@ fun EditConditionFlyer(
     showBackground = true
 )
 @Composable
-private fun PreviewEditConditionFlyer_empty() {
+fun PreviewEditConditionFlyer_empty() {
     CookingIdeaTheme {
         EditConditionFlyer(
             selectedImageUrl = null,
