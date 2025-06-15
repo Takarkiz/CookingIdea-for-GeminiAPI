@@ -26,7 +26,7 @@ fun SelectThemeScreen(
     uiState: SelectThemeUiState,
     onUpdateSelectedTheme: (String) -> Unit,
     onBack: () -> Unit,
-    onNext: () -> Unit = {},
+    onNext: () -> Unit,
 ) {
 
     Scaffold(

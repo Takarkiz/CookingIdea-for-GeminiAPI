@@ -5,7 +5,6 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -56,8 +55,8 @@ fun AppNavHost(
         }
 
         composable(Routes.MAIN.routeValue()) {
-            val mainUiState by mainViewModel.uiStateFlow.collectAsState()
-            val dialogUiState by mainViewModel.menuDialogUiStateFlow.collectAsState()
+            val mainUiState by mainViewModel.uiStateFlow.collectAsStateWithLifecycle()
+            val dialogUiState by mainViewModel.menuDialogUiStateFlow.collectAsStateWithLifecycle()
 
             MainScreen(
                 uiState = mainUiState,
@@ -77,6 +76,7 @@ fun AppNavHost(
                 },
                 onClickGenerator = {
                     onLoadImage(mainUiState.selectedImageUri!!)
+                    mainUiState.selectedImageUri?.let(onLoadImage)
                 },
                 onDismissDialogRequest = {
                     mainViewModel.dismissDialog()
