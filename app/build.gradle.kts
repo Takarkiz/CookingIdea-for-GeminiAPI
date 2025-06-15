@@ -70,6 +70,8 @@ dependencies {
     implementation(libs.androidx.material.icon)
     implementation(libs.coil.compose)
     implementation(libs.generative.ai)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     testImplementation(libs.junit)
     testImplementation(libs.junit.jupiter.api)
     testRuntimeOnly(libs.junit.jupiter.engine)
