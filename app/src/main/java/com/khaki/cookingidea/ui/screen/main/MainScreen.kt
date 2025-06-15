@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.khaki.cookingidea.R
-import com.khaki.cookingidea.ui.screen.menudialog.MenuDialogContent
 import com.khaki.cookingidea.ui.screen.menudialog.MenuDialogUiState
 import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 
@@ -28,6 +27,7 @@ fun MainScreen(
     onClickRemoveImage: () -> Unit,
     onClickGenerator: () -> Unit,
     onDismissDialogRequest: () -> Unit,
+    onShowMenuResult: () -> Unit,
 ) {
 
     Scaffold(
@@ -55,11 +55,8 @@ fun MainScreen(
             )
 
             if (uiState.showDialog) {
-                ModalBottomSheet(onDismissRequest = onDismissDialogRequest) {
-                    MenuDialogContent(
-                        uiState = dialogUiState,
-                    )
-                }
+                // Navigate to MenuResultScreen instead of showing a ModalBottomSheet
+                onShowMenuResult()
             }
         }
     )
@@ -77,6 +74,7 @@ private fun MainScreenPreview() {
             onClickRemoveImage = {},
             onClickGenerator = {},
             onDismissDialogRequest = {},
+            onShowMenuResult = {},
         )
     }
 }

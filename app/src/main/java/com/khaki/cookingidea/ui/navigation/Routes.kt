@@ -18,7 +18,12 @@ enum class Routes(val route: String) {
     /**
      * Main screen - where users can upload images and generate cooking ideas
      */
-    MAIN("main");
+    MAIN("main"),
+
+    /**
+     * Menu result screen - where users can view the generated menu
+     */
+    MENU_RESULT("menuResult");
 
     companion object {
         /**
