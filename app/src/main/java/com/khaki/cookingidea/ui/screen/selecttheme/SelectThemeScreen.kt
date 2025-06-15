@@ -26,6 +26,7 @@ fun SelectThemeScreen(
     uiState: SelectThemeUiState,
     onUpdateSelectedTheme: (String) -> Unit,
     onBack: () -> Unit,
+    onNext: () -> Unit,
 ) {
 
     Scaffold(
@@ -52,9 +53,7 @@ fun SelectThemeScreen(
         },
         floatingActionButton = {
             Button(
-                onClick = {
-
-                }
+                onClick = onNext
             ) {
                 Text(text = "次に進む")
             }
@@ -95,6 +94,7 @@ private fun SelectThemeScreenPreview() {
             ),
             onUpdateSelectedTheme = {},
             onBack = {},
+            onNext = {},
         )
     }
 }
