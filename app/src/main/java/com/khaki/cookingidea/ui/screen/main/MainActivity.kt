@@ -6,21 +6,26 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.compose.rememberNavController
 import coil.ImageLoader
 import coil.request.ImageRequest
 import com.khaki.cookingidea.core.android.ContextSupplier
+import com.khaki.cookingidea.ui.navigation.AppNavHost
+import com.khaki.cookingidea.ui.screen.selecttheme.SelectThemeViewModel
 import com.khaki.cookingidea.ui.theme.CookingIdeaTheme
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
-    private val viewModel: MainViewModel by viewModels {
+    private val mainViewModel: MainViewModel by viewModels {
         MainViewModel.Factory(contextSupplier = object : ContextSupplier {
             override fun getContext(): Context {
                 return this@MainActivity
@@ -28,41 +33,30 @@ class MainActivity : ComponentActivity() {
         })
     }
 
+    private val selectThemeViewModel: SelectThemeViewModel by viewModels {
+        SelectThemeViewModel.Factory()
+    }
+
     private val photoPickerLauncher =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
             if (uri == null) return@registerForActivityResult
-            viewModel.updateSelectedImageUri(uri)
+            mainViewModel.updateSelectedImageUri(uri)
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
-
-            val uiState by viewModel.uiStateFlow.collectAsState()
-            val dialogUiState by viewModel.menuDialogUiStateFlow.collectAsState()
+            val navController = rememberNavController()
 
             CookingIdeaTheme {
-                MainScreen(
-                    uiState = uiState,
-                    dialogUiState = dialogUiState,
-                    onClickSelectImage = {
-                        photoPickerLauncher.launch(
-                            PickVisualMediaRequest(
-                                mediaType = ActivityResultContracts.PickVisualMedia.ImageOnly
-                            )
-                        )
-                    },
-                    onClickFlyerImage = {
-                        // 画像のプレビューに遷移する
-                    },
-                    onClickRemoveImage = {
-                        viewModel.removeSelectedImage()
-                    },
-                    onClickGenerator = {
-                        loadImage(uiState.selectedImageUri!!)
-                    },
-                    onDismissDialogRequest = {
-                        viewModel.dismissDialog()
+                AppNavHost(
+                    navController = navController,
+                    mainViewModel = mainViewModel,
+                    selectThemeViewModel = selectThemeViewModel,
+                    photoPickerLauncher = photoPickerLauncher,
+                    onLoadImage = { uri ->
+                        loadImage(uri)
                     }
                 )
             }
@@ -81,7 +75,7 @@ class MainActivity : ComponentActivity() {
                 },
                 onSuccess = { result ->
                     lifecycleScope.launch {
-                        viewModel.execute((result as BitmapDrawable).bitmap)
+                        mainViewModel.execute((result as BitmapDrawable).bitmap)
                     }
                 },
                 onError = { _ ->
