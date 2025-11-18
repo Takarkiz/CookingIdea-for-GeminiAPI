@@ -13,6 +13,8 @@ import androidx.navigation.compose.composable
 import com.khaki.cookingidea.ui.navigation.Routes.Companion.routeValue
 import com.khaki.cookingidea.ui.screen.main.MainScreen
 import com.khaki.cookingidea.ui.screen.main.MainViewModel
+import com.khaki.cookingidea.ui.screen.menuresult.MenuResultScreen
+import com.khaki.cookingidea.ui.screen.menuresult.MenuResultUiState
 import com.khaki.cookingidea.ui.screen.selecttheme.SelectThemeScreen
 import com.khaki.cookingidea.ui.screen.selecttheme.SelectThemeViewModel
 import com.khaki.cookingidea.ui.screen.start.StartScreen
@@ -80,6 +82,25 @@ fun AppNavHost(
                 },
                 onDismissDialogRequest = {
                     mainViewModel.dismissDialog()
+                },
+                onShowMenuResult = {
+                    navController.navigate(Routes.MENU_RESULT.routeValue())
+                }
+            )
+        }
+
+        composable(Routes.MENU_RESULT.routeValue()) {
+            val dialogUiState by mainViewModel.menuDialogUiStateFlow.collectAsStateWithLifecycle()
+
+            // Convert MenuDialogUiState to MenuResultUiState
+            val menuResultUiState = MenuResultUiState(
+                generatedText = dialogUiState.generatedText
+            )
+
+            MenuResultScreen(
+                uiState = menuResultUiState,
+                onBackClick = {
+                    navController.popBackStack()
                 }
             )
         }
